@@ -11,18 +11,25 @@ def main():
 
 
 def download_csv():
-    url = "https://public.tableau.com/vizql/w/R2L2020/v/Division/tempfile/sessions/785D6C7052744A7B801670EAFCA6F501-0:0/?key=3351444022&keepfile=yes&attachment=yes "
+    url = "https://public.tableau.com/vizql/w/R2L2020/v/R2L/tempfile/sessions/53FC07EE12434A21990049852B616107-0:0/?key=1430079797&keepfile=yes&attachment=yes"
     urllib.request.urlretrieve(url, './VirginiaOriginal.csv')
     print("Downloaded VA csv")
 
 
 def copy_to_new_csv():
     f1 = open("VirginiaOriginal.csv", 'r', newline='', encoding='utf-16')
-    f2 = open('Complete.csv', 'a')
+    f2 = open('SchoolDistricts.csv', 'a')
     csv_reader = reader(f1, delimiter='\t')
     csv_writer = csv.writer(f2)
+    i = 0;
+    date_update = "none"
     for row in csv_reader:
-        csv_writer.writerow(["Virginia", row[1],row[len(row)-1]])
+        if i == 1:
+            date_update = row[len(row)-1]
+        if (row[len(row)-1] != "") and (i > 1):
+            csv_writer.writerow(["Virginia", row[1],row[len(row)-1], date_update])
+        i += 1
+
 
 
 
