@@ -4,6 +4,7 @@
 import requests
 import csv
 import virginia
+import oregon
 
 
 # Press the green button in the gutter to run the script.
@@ -12,6 +13,7 @@ if __name__ == '__main__':
     csv_writer = csv.writer(mainFile)
     csv_writer.writerow(["State", "District", "Mode", "Date Updated"])
     mainFile.close()
-    virginia.main()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    #oregon.main()
+    #virginia.main()
+

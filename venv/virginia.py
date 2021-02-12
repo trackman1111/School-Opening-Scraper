@@ -5,10 +5,9 @@ from csv import reader
 
 
 def main():
-    download_csv()
-    copy_to_new_csv()
-
-
+    print("test")
+    #download_csv()
+    #copy_to_new_csv()
 
 def download_csv():
     url = "https://public.tableau.com/vizql/w/R2L2020/v/R2L/tempfile/sessions/53FC07EE12434A21990049852B616107-0:0/?key=1430079797&keepfile=yes&attachment=yes"
@@ -30,8 +29,4 @@ def copy_to_new_csv():
             csv_writer.writerow(["Virginia", row[1],row[len(row)-1], date_update])
         i += 1
 
-
-
-
-def organize_data():
-    print("Organized")
+main()
