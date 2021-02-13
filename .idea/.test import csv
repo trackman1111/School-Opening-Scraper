@@ -1,4 +1,0 @@
-import pandas as pd
-data = pd.read_csv (r'C:\Crowdsource\Details_crosstab.csv')
-df = pd.DataFrame(data, columns=['Unnamed: 0','Unnamed: 3','In-Person','Hybrid','Distance','Combination'])
-print(df)

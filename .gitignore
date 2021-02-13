@@ -1,0 +1,17 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# IDE files
+.idea
+
+# outputs
+*.xlsx
+*.csv
+
+# byte-compiled
+__pycache__/
+
+# installer logs
+pip-log.txt
+
+# misc
+**/.DS_Store
