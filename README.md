@@ -14,8 +14,8 @@ If you have any problems or questions about this repository, please feel free to
 2. Install [Pipenv](https://packaging.python.org/tutorials/managing-dependencies/#installing-pipenv)
 3. Navigate to the project root directory
 4. Run the script with `pipenv run python main.py`
-    - If you get an error that `pipenv` is not available, you may need to [edit your system `PATH`](https://packaging.python.org/tutorials/installing-packages/#installing-to-the-user-site)
-      - You can also open a shell within this virtual environment using `pipenv shell`
+   - If you get an error that `pipenv` is not available, you may need to [edit your system `PATH`](https://packaging.python.org/tutorials/installing-packages/#installing-to-the-user-site)
+   - You can also open a shell within this virtual environment using `pipenv shell`
 
 ## Adding a State Script
 
@@ -55,7 +55,7 @@ You can see the current list of available packages in the `Pipfile`. This includ
 1. Navigate to the project root directory
 2. Run `pipenv install package_name`
 3. Add an import statement to your Python file: `import package_name`
-This will add the package to the list of dependencies in the `Pipfile` and make it available to you.
+   This will add the package to the list of dependencies in the `Pipfile` and make it available to you.
 
 ### Using PyCharm
 
