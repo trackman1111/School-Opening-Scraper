@@ -7,6 +7,10 @@ name = "pypi"
 requests = "*"
 openpyxl = "*"
 bs4 = "*"
+getresponse = "*"
+pandas = "*"
+as = "*"
+pd = "*"
 
 [dev-packages]
 
