@@ -13,7 +13,8 @@ If you have any problems or questions about this repository, please feel free to
 1. Install [Python](https://www.python.org/downloads/)
 2. Install [Pipenv](https://packaging.python.org/tutorials/managing-dependencies/#installing-pipenv)
 3. Navigate to the project root directory
-4. Run the script with `pipenv run python main.py`
+4. Run `pipenv install` to install the dependencies from the Pipfile
+5. Run the script with `pipenv run python main.py`
    - If you get an error that `pipenv` is not available, you may need to [edit your system `PATH`](https://packaging.python.org/tutorials/installing-packages/#installing-to-the-user-site)
    - You can also open a shell within this virtual environment using `pipenv shell`
 
