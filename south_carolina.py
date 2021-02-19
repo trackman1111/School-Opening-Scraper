@@ -3,6 +3,7 @@ from urllib.parse import urlparse
 import requests
 import re
 import csv
+import lxml
 
 for school in ["hi"]:
     url = "https://ed.sc.gov/districts-schools/schools/district-and-school-closures/operational-status/"
