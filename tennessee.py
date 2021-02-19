@@ -81,7 +81,7 @@ def copy_to_main():
             isFirst = False
         else:
             address = row[2] + ", " + row[4] + ", " + row[5]
-            csv_writer.writerow(["Tennessee", row[1], row[13], address, row[8], row[9], row[10]])
+            csv_writer.writerow(["Tennessee", row[1], row[13], address, row[8], row[9], row[10], row[23]])
     f1.close()
     f2.close()
 

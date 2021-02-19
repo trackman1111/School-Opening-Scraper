@@ -6,6 +6,7 @@ import requests
 import re
 import csv
 import lxml
+from datetime import date
 
 
 def main():
@@ -48,6 +49,6 @@ def copy_to_main():
         if is_first:
             is_first = False
         else:
-            csv_writer.writerow(["South Carolina", row[0], row[1], "", "", "", ""])
+            csv_writer.writerow(["South Carolina", row[0], row[1], "", "", "", "", date.today()])
     f1.close()
     f2.close()

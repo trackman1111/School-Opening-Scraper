@@ -9,7 +9,7 @@ import tennessee
 if __name__ == '__main__':
     mainFile = open('SchoolDistricts.csv', 'w')
     csv_writer = csv.writer(mainFile)
-    csv_writer.writerow(["State", "District", "Mode", "Address", "Latitude", "Longitude", "Date Updated"])
+    csv_writer.writerow(["State", "District", "Mode", "Address", "Latitude", "Longitude", "Date Updated", "Date Scraped"])
     mainFile.close()
     alabama.main()
     south_carolina.main()

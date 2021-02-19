@@ -46,6 +46,6 @@ def copy_to_main():
         if isFirst:
             isFirst = False
         else:
-            csv_writer.writerow(["Alabama", row[1], row[3], row[2], "", "", row[6]])
+            csv_writer.writerow(["Alabama", row[1], row[3], row[2], "", "", "",row[6]])
     f1.close()
     f2.close()
