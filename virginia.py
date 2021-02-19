@@ -28,5 +28,8 @@ def copy_to_new_csv():
         if (row[len(row)-1] != "") and (i > 1):
             csv_writer.writerow(["Virginia", row[1],row[len(row)-1], date_update])
         i += 1
+    f1.close()
+    f2.close()
+
 
 main()
