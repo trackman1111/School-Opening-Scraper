@@ -1,18 +1,12 @@
 # add all imports here
-import csv
 import json
 import urllib
-from _csv import reader
-
 import pandas as pd
-from datetime import date
-
-import requests
+from datetime import date, datetime
 
 
 def main():
     to_csv()
-    copy_to_main()
 
 
 def to_csv():
@@ -67,23 +61,7 @@ def to_csv():
                                   'last week staff cases': last_week_staff_cases, 'date scraped': date.today()})
         df = df.append(new_row, ignore_index=True)
     # writes to "Tennessee.csv" file
-    df.to_csv('Tennessee.csv', index=False)
+    df.to_csv('Tennessee' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)
 
 
-def copy_to_main():
-    f1 = open("Tennessee.csv", 'r')
-    f2 = open('SchoolDistricts.csv', 'a')
-    csv_reader = reader(f1)
-    csv_writer = csv.writer(f2)
-    isFirst = True;
-    for row in csv_reader:
-        if isFirst:
-            isFirst = False
-        else:
-            address = row[2] + ", " + row[4] + ", " + row[5]
-            csv_writer.writerow(["Tennessee", row[1], row[13], address, row[8], row[9], row[10], row[23]])
-    f1.close()
-    f2.close()
-
-
-main()
+#main()

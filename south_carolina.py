@@ -1,12 +1,9 @@
 from _csv import reader
-
 from bs4 import BeautifulSoup
-from urllib.parse import urlparse
 import requests
 import re
 import csv
-import lxml
-from datetime import date
+from datetime import date, datetime
 
 
 def main():
@@ -30,13 +27,11 @@ def main():
 
         csv_columns = ['SchoolDistrict', 'Policy']
 
-        with open("South_Carolina.csv", 'w') as csv_file:
+        with open("South_Carolina" + datetime.now().strftime('%m-%d-%Y') + ".csv", 'w') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow(csv_columns)
             for key, value in schoolinfo.items():
                 writer.writerow([key, value])
-
-        copy_to_main()
 
 
 def copy_to_main():
@@ -52,3 +47,6 @@ def copy_to_main():
             csv_writer.writerow(["South Carolina", row[0], row[1], "", "", "", "", date.today()])
     f1.close()
     f2.close()
+
+
+#main()

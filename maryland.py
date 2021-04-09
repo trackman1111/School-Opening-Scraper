@@ -1,17 +1,14 @@
 from datetime import date
-
+from datetime import datetime
 import requests
 import pandas as pd
 
-def main():
-    download_csv()
 
-def download_csv():
+def main():
     df = pd.DataFrame(
         columns=["objectID", "school", "county report", "number of total cases", "report date", "date scraped"])
     api_url = "https://opendata.arcgis.com/datasets/004454e8b70847f89b776b1caf94b30b_0.geojson"
     response = requests.get(api_url)
-    print(response.status_code)
     data = response.json()
 
     for p in data["features"]:
@@ -26,6 +23,7 @@ def download_csv():
                                   "date scraped": date.today()})
         df = df.append(new_row, ignore_index=True)
 
-    df.to_csv('Maryland'+ str(date.today()) + '.csv', index=False)
+    df.to_csv('Maryland' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)
 
-main()
+
+#main()

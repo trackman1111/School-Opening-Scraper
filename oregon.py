@@ -1,15 +1,15 @@
-import requests
 import urllib
-import csv
 from openpyxl import load_workbook
 from bs4 import BeautifulSoup
 import pandas as pd
 from datetime import date
+from datetime import datetime
 
 
 def main():
     download_xslx()
     copy_to_new_csv()
+
 
 def download_xslx():
     # Get html of page
@@ -23,7 +23,6 @@ def download_xslx():
 
     # Retrieve cvs file
     urllib.request.urlretrieve(dataUrl, './OregonOriginal.xlsx')
-    print("Downloaded OR xlsx")
 
 
 def copy_to_new_csv():
@@ -66,7 +65,7 @@ def copy_to_new_csv():
                 df.iat[districtIndex, 3] = df.iat[districtIndex, 3] + 1
             elif distanceLIPI == 1:
                 df.iat[districtIndex, 4] = df.iat[districtIndex, 4] + 1
-        else:                              # Start new district
+        else:  # Start new district
             districtIndex += 1
             reportWeek = row[3]
             dateUpdated = reportWeek[11:]  # End date of report week
@@ -78,8 +77,9 @@ def copy_to_new_csv():
 
             df = df.append(newDistrictRow, ignore_index=True)
 
-        inputRow += 1                      # End for
+        inputRow += 1  # End for
         prevDistrict = curDistrict
-    df.to_csv('Oregon.csv', index=False)   # Copy dataframe to CSV
+    df.to_csv('Oregon' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)  # Copy dataframe to CSV
 
-main()
+
+#main()

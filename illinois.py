@@ -1,17 +1,11 @@
-import csv
 import json
 import urllib
-from _csv import reader
-
 import pandas as pd
 from datetime import date
+from datetime import datetime
 
-import requests
 
 def main():
-    to_csv()
-
-def to_csv():
     df = pd.DataFrame(
         columns=['district', 'city', 'county', 'instructional delivery', 'school count', 'grades served', 'total PreK-12 enrollment',
                  'modified', 'date scraped'])
@@ -32,8 +26,7 @@ def to_csv():
                                   'grades served': grades_served, 'total PreK-12 enrollment': total_enrollment,
                                   'modified id': modified_id, 'date scraped': date.today()})
         df = df.append(new_row, ignore_index=True)
-    df.to_csv('Illinois.csv', index=False)
+    df.to_csv('Illinois' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)
 
 
-
-main()
+#main()
