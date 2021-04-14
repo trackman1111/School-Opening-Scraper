@@ -56,4 +56,4 @@ def copy_to_new_csv(modifiedDate):
         inputRow += 1  # End for
     df.to_csv('Ohio' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)  # Copy dataframe to CSV
 
-main()
+#main()
