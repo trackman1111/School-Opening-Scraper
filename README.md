@@ -28,20 +28,19 @@ import requests
 
 
 def main():
-    download_xslx()
+    download_csv()
+    print("<STATE_ABBREVIATION> - Downloaded CSV")
     copy_to_new_csv()
+    print("<STATE_ABBREVIATION> - Wrote CSV")
 
 
-def download_csv():#or download_xslx()
-    #Dowload File Locally using ("./StateNameOriginal.extension")
-    print("State Name downloaded!")
-
+def download_csv():  # or download_xslx()
+    # Dowload file locally using ("./StateNameOriginal.extension")
 
 def copy_to_new_csv():
-    #Write to School Districts
-    print("State Name written to csv!")
+    # Write to School Districts
 
-#add more helper methods if needed
+# Add more helper methods if needed
 
 main()
 ```
