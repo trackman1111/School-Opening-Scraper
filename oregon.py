@@ -1,4 +1,4 @@
-import urllib
+import requests
 from openpyxl import load_workbook
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -8,13 +8,14 @@ from datetime import datetime
 
 def main():
     download_xslx()
+    print("OR - Downloaded XSLX")
     copy_to_new_csv()
-
+    print("OR - Wrote CSV")
 
 def download_xslx():
     # Get html of page
     url = "https://www.oregon.gov/ode/students-and-family/healthsafety/Pages/2020-21-School-Status.aspx"
-    html = urllib.request.urlopen(url).read()
+    html = requests.get(url).content
     soup = BeautifulSoup(html, 'html.parser')
 
     # Get the most recent update link
@@ -22,8 +23,8 @@ def download_xslx():
     dataUrl = "https://www.oregon.gov/" + path
 
     # Retrieve cvs file
-    urllib.request.urlretrieve(dataUrl, './OregonOriginal.xlsx')
-
+    originalFile = requests.get(dataUrl)
+    open('./OregonOriginal.xlsx', 'wb').write(originalFile.content)
 
 def copy_to_new_csv():
     wb = load_workbook('OregonOriginal.xlsx')
@@ -68,7 +69,7 @@ def copy_to_new_csv():
         else:  # Start new district
             districtIndex += 1
             reportWeek = row[3]
-            dateUpdated = reportWeek[11:]  # End date of report week
+            dateUpdated = reportWeek[12:]  # End date of report week
 
             newDistrictRow = pd.Series(data={'district': curDistrict, 'on-site school count': onSite,
                                              'hybrid school count': hybrid, 'distance school count': distance,
@@ -80,6 +81,5 @@ def copy_to_new_csv():
         inputRow += 1  # End for
         prevDistrict = curDistrict
     df.to_csv('Oregon' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)  # Copy dataframe to CSV
-
 
 #main()
