@@ -1,4 +1,4 @@
-import urllib.request
+import requests
 from openpyxl import load_workbook
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -10,13 +10,13 @@ def main():
     modifiedDate = download_xslx()
     print("OH - Downloaded CSV")
     copy_to_new_csv(modifiedDate)
-    print("OH - Copied CSV")
+    print("OH - Wrote CSV")
 
 
 def download_xslx():
     # Get html of page
     url = "http://education.ohio.gov/Topics/Reset-and-Restart"
-    html = urllib.request.urlopen(url).read()
+    html = requests.get(url).content
     soup = BeautifulSoup(html, 'html.parser')
 
     # Get the most recent update link
@@ -24,7 +24,8 @@ def download_xslx():
     date = path[-10:-6]
     dataUrl = "http://education.ohio.gov" + str(path)
     # Retrieve cvs file
-    urllib.request.urlretrieve(dataUrl, './OhioOriginal.xlsx')
+    originalFile = requests.get(dataUrl)
+    open('./OhioOriginal.xlsx', 'wb').write(originalFile.content)
     return date
 
 
