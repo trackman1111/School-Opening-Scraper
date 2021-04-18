@@ -25,7 +25,7 @@ else:
 
 pdfPathName='New_Mexico_SDP.pdf'
 today = date.today()
-finalCSVpath='New_Mexico_'+today.strftime("%m-%d-%y")+'.csv'
+finalCSVpath='out/New_Mexico_'+today.strftime("%m-%d-%y")+'.csv'
 filename = Path(pdfPathName)
 response = requests.get(url)
 filename.write_bytes(response.content)

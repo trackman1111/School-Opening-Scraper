@@ -25,12 +25,12 @@ def download_xslx():
     dataUrl = "http://education.ohio.gov" + str(path)
     # Retrieve cvs file
     originalFile = requests.get(dataUrl)
-    open('./OhioOriginal.xlsx', 'wb').write(originalFile.content)
+    open('temp/OhioOriginal.xlsx', 'wb').write(originalFile.content)
     return date
 
 
 def copy_to_new_csv(modifiedDate):
-    wb = load_workbook('OhioOriginal.xlsx')
+    wb = load_workbook('temp/OhioOriginal.xlsx')
     districtSheet = wb['Model']
     inputRow = 0
     df = pd.DataFrame(
@@ -55,6 +55,6 @@ def copy_to_new_csv(modifiedDate):
         df = df.append(newRow, ignore_index=True)
 
         inputRow += 1  # End for
-    df.to_csv('Ohio' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)  # Copy dataframe to CSV
+    df.to_csv('out/Ohio' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)  # Copy dataframe to CSV
 
 #main()

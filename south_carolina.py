@@ -27,7 +27,7 @@ def main():
 
         csv_columns = ['SchoolDistrict', 'Policy']
 
-        with open("South_Carolina" + datetime.now().strftime('%m-%d-%Y') + ".csv", 'w') as csv_file:
+        with open("out/South_Carolina" + datetime.now().strftime('%m-%d-%Y') + ".csv", 'w') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow(csv_columns)
             for key, value in schoolinfo.items():

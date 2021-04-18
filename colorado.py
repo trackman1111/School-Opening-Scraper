@@ -10,7 +10,7 @@ def main():
     soup = BeautifulSoup(page.text, 'lxml')
 
     table = soup.find_all("table")[0]
-    with open("Colorado" + datetime.now().strftime('%m-%d-%Y') + ".csv", "w") as f:
+    with open("out/Colorado" + datetime.now().strftime('%m-%d-%Y') + ".csv", "w") as f:
         csv_writer = csv.writer(f)
         index = 0
         for row in table.find_all("tr"):

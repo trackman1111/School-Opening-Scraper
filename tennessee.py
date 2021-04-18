@@ -61,7 +61,7 @@ def to_csv():
                                   'last week staff cases': last_week_staff_cases, 'date scraped': date.today()})
         df = df.append(new_row, ignore_index=True)
     # writes to "Tennessee.csv" file
-    df.to_csv('Tennessee' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)
+    df.to_csv('out/Tennessee' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)
 
 
 #main()

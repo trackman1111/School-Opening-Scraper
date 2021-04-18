@@ -26,7 +26,7 @@ def main():
                                   'grades served': grades_served, 'total PreK-12 enrollment': total_enrollment,
                                   'modified id': modified_id, 'date scraped': date.today()})
         df = df.append(new_row, ignore_index=True)
-    df.to_csv('Illinois' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)
+    df.to_csv('out/Illinois' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)
     print("IL - Wrote CSV")
 
 #main()

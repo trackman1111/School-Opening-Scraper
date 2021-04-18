@@ -23,7 +23,7 @@ def main():
                                   "date scraped": date.today()})
         df = df.append(new_row, ignore_index=True)
 
-    df.to_csv('Maryland' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)
+    df.to_csv('out/Maryland' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)
 
 
 #main()

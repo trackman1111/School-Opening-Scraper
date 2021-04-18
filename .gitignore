@@ -4,8 +4,10 @@
 .idea
 
 # outputs
-*.xlsx
-*.csv
+out/
+
+# temporary files
+temp/
 
 # byte-compiled
 __pycache__/

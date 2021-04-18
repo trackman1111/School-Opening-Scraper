@@ -24,10 +24,10 @@ def download_xslx():
 
     # Retrieve cvs file
     originalFile = requests.get(dataUrl)
-    open('./OregonOriginal.xlsx', 'wb').write(originalFile.content)
+    open('temp/OregonOriginal.xlsx', 'wb').write(originalFile.content)
 
 def copy_to_new_csv():
-    wb = load_workbook('OregonOriginal.xlsx')
+    wb = load_workbook('temp/OregonOriginal.xlsx')
     districtSheet = wb['District List']
     prevDistrict = ""
     inputRow = 0
@@ -80,6 +80,6 @@ def copy_to_new_csv():
 
         inputRow += 1  # End for
         prevDistrict = curDistrict
-    df.to_csv('Oregon' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)  # Copy dataframe to CSV
+    df.to_csv('out/Oregon' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)  # Copy dataframe to CSV
 
-#main()
+main()

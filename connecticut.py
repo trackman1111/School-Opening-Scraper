@@ -23,5 +23,5 @@ def main():
                                   "dateupdated": date.today()})
         df = df.append(new_row, ignore_index=True)
 
-    df.to_csv('Connecticut' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)
+    df.to_csv('out/Connecticut' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)
 main()

@@ -11,13 +11,13 @@ def main():
 
 def download_csv():
     url = "https://public.tableau.com/vizql/w/R2L2020/v/R2L/tempfile/sessions/53FC07EE12434A21990049852B616107-0:0/?key=1430079797&keepfile=yes&attachment=yes"
-    urllib.request.urlretrieve(url, './VirginiaOriginal.csv')
+    urllib.request.urlretrieve(url, 'temp/VirginiaOriginal.csv')
     print("Downloaded VA csv")
 
 
 def copy_to_new_csv():
-    f1 = open("VirginiaOriginal.csv", 'r', newline='', encoding='utf-16')
-    f2 = open('SchoolDistricts.csv', 'a')
+    f1 = open('temp/VirginiaOriginal.csv', 'r', newline='', encoding='utf-16')
+    f2 = open('out/SchoolDistricts.csv', 'a')
     csv_reader = reader(f1, delimiter='\t')
     csv_writer = csv.writer(f2)
     i = 0;
