@@ -27,7 +27,7 @@ def write_csv():
     else:
         print("NM - page request error with ", page.status_code)
 
-    pdfPathName = 'New_Mexico_SDP.pdf'
+    pdfPathName = 'temp/New_Mexico_SDP.pdf'
     today = date.today()
     finalCSVpath = 'out/New_Mexico_' + today.strftime("%m-%d-%y") + '.csv'
     filename = Path(pdfPathName)

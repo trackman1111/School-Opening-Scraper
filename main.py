@@ -1,3 +1,5 @@
+import logging
+from timeit import default_timer as timer
 import alabama
 #import arizona
 import colorado
@@ -11,21 +13,31 @@ import tennessee
 #import virginia
 import washington
 
-# Press the green button in the gutter to run the script.
+# Runs all state scripts that are currently available
 if __name__ == '__main__':
-    alabama.main()
-    #arizona.main() empty file
-    colorado.main()
-    illinois.main()
-    new_mexico.main()
-    maryland.main()
-    ohio.main()
-    oregon.main()
-    south_carolina.main()
-    tennessee.main()
-    #virginia.main() incomplete
-    washington.main()
-    
+    # disabledStates = ["arizona", "virginia"]
+
+    currentStates = ["alabama", "colorado", "illinois", "new_mexico", "maryland", "ohio", "oregon", "south_carolina",
+                     "tennessee", "washington"]
+
+    successes = []
+    failures = []
+
+    startTimer = timer()
+    for state in currentStates:
+        try:
+            exec("{stateName}.main()".format(stateName=state))
+            successes.append(state)
+        except Exception:
+            logging.error("Failed to fetch %s", state, exc_info=True)
+            failures.append(state)
+
+    endTimer = timer()
+    elapsed = endTimer - startTimer
+
+    print("Fetched data for " + str(successes) + " in " + str(elapsed) + " seconds.")
+    if failures:
+        print("Failed to fetch: " +  str(failures))
 
 
 
