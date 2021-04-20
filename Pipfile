@@ -11,8 +11,8 @@ getresponse = "*"
 as = "*"
 pd = "*"
 pandas = "*"
-tabula = "*"
 html5lib = "*"
+tabula-py = "*"
 
 [dev-packages]
 
