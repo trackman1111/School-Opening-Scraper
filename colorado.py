@@ -17,6 +17,6 @@ def main():
             if index > 8 and index != 10:
                 csv_writer.writerows([[td.text for td in row.find_all("td")]])
             index = index + 1
-
+    print("CO - Wrote CSV")
 
 #main()

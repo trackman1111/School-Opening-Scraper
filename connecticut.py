@@ -10,6 +10,7 @@ def main():
     api_url = "https://data.ct.gov/resource/u8jq-fxc2.json"
     response = requests.get(api_url)
     data = response.json()
+    print("CT - Got JSON Data")
 
     for properties in data:
         district = properties["district"]
@@ -24,4 +25,6 @@ def main():
         df = df.append(new_row, ignore_index=True)
 
     df.to_csv('out/Connecticut' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)
-main()
+    print("CT - Wrote CSV")
+
+#main()

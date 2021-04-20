@@ -82,4 +82,4 @@ def copy_to_new_csv():
         prevDistrict = curDistrict
     df.to_csv('out/Oregon' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)  # Copy dataframe to CSV
 
-main()
+#main()

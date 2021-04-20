@@ -10,7 +10,7 @@ def main():
     api_url = "https://opendata.arcgis.com/datasets/004454e8b70847f89b776b1caf94b30b_0.geojson"
     response = requests.get(api_url)
     data = response.json()
-
+    print("MD - Got JSON Data")
     for p in data["features"]:
         properties = p["properties"]
         object_id = properties["OBJECTID"]
@@ -24,6 +24,6 @@ def main():
         df = df.append(new_row, ignore_index=True)
 
     df.to_csv('out/Maryland' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)
-
+    print("MD - Wrote CSV")
 
 #main()

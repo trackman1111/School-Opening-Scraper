@@ -23,8 +23,9 @@ def main():
                 schoolinfo[schname] = schpol
 
         else:
-            print("page request error with ", page.status_code)
+            print("SC - page request error with ", page.status_code)
 
+        print("SC - Scraped data")
         csv_columns = ['SchoolDistrict', 'Policy']
 
         with open("out/South_Carolina" + datetime.now().strftime('%m-%d-%Y') + ".csv", 'w') as csv_file:
@@ -32,6 +33,8 @@ def main():
             writer.writerow(csv_columns)
             for key, value in schoolinfo.items():
                 writer.writerow([key, value])
+
+        print("SC - Wrote CSV")
 
 
 def copy_to_main():
