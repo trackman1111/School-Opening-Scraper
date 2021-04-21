@@ -16,13 +16,13 @@ if __name__ == '__main__':
             modules[state] = importlib.import_module(state)
         except ImportError:
             logging.error("Failed to import %s", state, exc_info=True)
-    
-     for folder in ["temp","out"]:
-    	if not os.path.isdir(folder):
-    		try:
-    			os.mkdir(folder)
-    		except: 
-    			print(folder+" folder does not exist and could not be created")
+   
+    for folder in ["temp","out"]:
+        if not os.path.isdir(folder):
+    	    try:
+    		    os.mkdir(folder)
+    	    except: 
+    		    print(folder+" folder does not exist and could not be created")
     		
 
     successes = []
