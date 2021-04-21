@@ -1,6 +1,7 @@
 import logging
 from timeit import default_timer as timer
 import importlib
+import os
 
 # Runs all state scripts that are currently available
 if __name__ == '__main__':
@@ -15,6 +16,14 @@ if __name__ == '__main__':
             modules[state] = importlib.import_module(state)
         except ImportError:
             logging.error("Failed to import %s", state, exc_info=True)
+    
+     for folder in ["temp","out"]:
+    	if not os.path.isdir("out"):
+    		try:
+    			os.mkdir(folder)
+    		except: 
+    			print(folder+" folder does not exist and could not be created")
+    		
 
     successes = []
     failures = []
