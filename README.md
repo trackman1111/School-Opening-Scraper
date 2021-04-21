@@ -46,7 +46,9 @@ main()
 ```
 
 Once you've written your program, you can run it with this command: `pipenv run python state_name.py`.
-If your program is working as expected, you can add it to `main.py` by adding `import state_name` at the top and `state_name.main()` beneath the currently present states.
+If your program is working as expected, you can add it to the main file with the following steps:
+1. Comment out main() at the bottom of the script
+2. Add the name of your state script as a string in the list of current states in `main.py`
 
 ### Adding a Package
 
