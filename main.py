@@ -18,7 +18,7 @@ if __name__ == '__main__':
             logging.error("Failed to import %s", state, exc_info=True)
     
      for folder in ["temp","out"]:
-    	if not os.path.isdir("out"):
+    	if not os.path.isdir(folder):
     		try:
     			os.mkdir(folder)
     		except: 
