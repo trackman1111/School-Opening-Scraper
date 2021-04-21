@@ -9,7 +9,7 @@ if __name__ == '__main__':
 
     # Currently working states <-- ADD STATES BELOW
     currentStates = ["alabama", "colorado", "illinois", "new_mexico", "maryland", "ohio", "oregon", "south_carolina",
-                     "tennessee", "washington"]
+                     "tennessee", "washington", "north_carolina"]
 
     # Import module for each state script
     modules = {}
