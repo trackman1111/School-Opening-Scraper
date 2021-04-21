@@ -13,6 +13,7 @@ pd = "*"
 pandas = "*"
 html5lib = "*"
 tabula-py = "*"
+lxml = "*"
 
 [dev-packages]
 
