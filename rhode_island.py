@@ -37,30 +37,25 @@ def copy_to_new_csv():
         if inputRow == 1:  # Get date updated
             dateUpdated = str(row[0])[18:27]
             casesUpdated = str(row[0])[61:70]
-            print("GOT DATE: " + dateUpdated + " and " + casesUpdated)
             inputRow += 1
             continue
 
         # Reached data sources at end of file
         if "Data Sources" in row[0]:
-            print("eof")
             break
 
         # Row is a section header:
         if "In-Person and Hybrid Cases" in row[0]:
-            print("header1")
             model = "In-Person and Hybrid"
             inputRow += 1
             continue
         elif "Virtual Cases" in row[0]:
-            print("header2")
             model = "Virtual"
             inputRow += 1
             continue
 
         # Row contains totals
         if row[0] == "":
-            print("totals")
             inputRow += 1
             continue
 
