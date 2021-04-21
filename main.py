@@ -7,28 +7,33 @@ import os
 if __name__ == '__main__':
     # disabledStates = ["arizona", "virginia"]
 
+    # Currently working states <-- ADD STATES BELOW
     currentStates = ["alabama", "colorado", "illinois", "new_mexico", "maryland", "ohio", "oregon", "south_carolina",
                      "tennessee", "washington"]
 
+    # Import module for each state script
     modules = {}
     for state in currentStates:
         try:
             modules[state] = importlib.import_module(state)
         except ImportError:
             logging.error("Failed to import %s", state, exc_info=True)
-    
-     for folder in ["temp","out"]:
-    	if not os.path.isdir(folder):
-    		try:
-    			os.mkdir(folder)
-    		except: 
-    			print(folder+" folder does not exist and could not be created")
-    		
 
+    # Set-up necessary subdirectories
+    for folder in ["temp", "out"]:
+        if not os.path.isdir(folder):
+            try:
+                os.mkdir(folder)
+            except OSError:
+                logging.error("Failed to create directory %s", folder, exc_info=True)
+
+    # Lists to store scripts that either fail or succeed in running
     successes = []
     failures = []
 
-    startTimer = timer()
+    startTimer = timer() # Begin timer
+
+    # Run scripts for each working state, catch and denote failures
     for state in currentStates:
         try:
             exec("modules['{stateName}'].main()".format(stateName=state))
@@ -37,9 +42,10 @@ if __name__ == '__main__':
             logging.error("Failed to fetch %s", state, exc_info=True)
             failures.append(state)
 
-    endTimer = timer()
-    elapsed = endTimer - startTimer
+    endTimer = timer() # End timer
+    elapsed = endTimer - startTimer # Calculate elapsed time to fetch state data
 
+    # Print results
     print("Fetched data for " + str(successes) + " in " + str(elapsed) + " seconds.")
     if failures:
         print("Failed to fetch: " + str(failures))
