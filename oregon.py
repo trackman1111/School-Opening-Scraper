@@ -8,9 +8,9 @@ from datetime import datetime
 
 def main():
     download_xslx()
-    print("OR - Downloaded XSLX")
+    #print("OR - Downloaded XSLX")
     copy_to_new_csv()
-    print("OR - Wrote CSV")
+    #print("OR - Wrote CSV")
 
 def download_xslx():
     # Get html of page

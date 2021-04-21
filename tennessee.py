@@ -18,7 +18,7 @@ def to_csv():
     url = "https://districtinformation.tnedu.gov/api/districts"
     open_url = urllib.request.urlopen(url)
     json_data = json.loads(open_url.read())
-    print("TN - Got JSON Data")
+    #print("TN - Got JSON Data")
     for sd in json_data:
         school_id = sd["id"]
         name = sd["name"]
@@ -63,6 +63,6 @@ def to_csv():
         df = df.append(new_row, ignore_index=True)
     # writes to "Tennessee.csv" file
     df.to_csv('out/Tennessee' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)
-    print("TN - Wrote CSV")
+    #print("TN - Wrote CSV")
 
 #main()

@@ -22,7 +22,7 @@ def write_csv():
         linkcol = soup.find(class_="col-md-4")
         for linktxt in linkcol.find_all("a", href=True):
             if linktxt.contents[0] == 'School Reentry Status':
-                print('NM - Link Found')
+                #print('NM - Link Found')
                 url = linktxt.get('href')
     else:
         print("NM - page request error with ", page.status_code)
@@ -34,12 +34,12 @@ def write_csv():
     response = requests.get(url)
     filename.write_bytes(response.content)
 
-    print('NM - Got PDF')
+    #print('NM - Got PDF')
 
     # Silent mode to disable ApachePDF font errors that don't affect output
     tabula.convert_into(pdfPathName, finalCSVpath, output_format="csv", pages='all', silent=True)
 
-    print('NM - Converted to CSV')
+    #print('NM - Converted to CSV')
 
     lines = list()
     csvhead = ['School district', 'School name', 'Reopening Policy', 'County']
@@ -50,16 +50,16 @@ def write_csv():
             # print(row)
             if row[0] != "DISTRICT" and row[0] != "":
                 lines.append(row)
-        print('NM - Opened CSV')
+        #print('NM - Opened CSV')
 
     with open(finalCSVpath, 'w') as writeFile:
         writer = csv.writer(writeFile)
         writer.writerows(lines)
-        print('NM - Reformatted CSV')
+        #print('NM - Reformatted CSV')
 
     try:
         os.remove(pdfPathName)
-        print('NM - Deleted PDF')
+        #print('NM - Deleted PDF')
     except:
         print("NM - Could not delete file")
 

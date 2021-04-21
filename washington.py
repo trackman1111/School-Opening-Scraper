@@ -3,7 +3,7 @@ from datetime import datetime
 
 def main():
     download_xslx()
-    print("WA - Downloaded CSV")
+    #print("WA - Downloaded CSV")
 
 def download_xslx():
     # CSV API URL

@@ -8,9 +8,9 @@ from datetime import datetime
 
 def main():
     modifiedDate = download_xslx()
-    print("OH - Downloaded CSV")
+    #print("OH - Downloaded CSV")
     copy_to_new_csv(modifiedDate)
-    print("OH - Wrote CSV")
+    #print("OH - Wrote CSV")
 
 
 def download_xslx():
