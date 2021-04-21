@@ -6,25 +6,37 @@ import requests
 
 def main():
     df = pd.DataFrame(
-        columns=["district", "facilityid", "facilityname", "city", "school_total", "reporting_period", "dateupdated"])
-    api_url = "https://data.ct.gov/resource/u8jq-fxc2.json"
+        columns=["district code", "district name", "in-person grades", "hybrid grades", "remote grades",
+                 "predominant learning model", "organization type", "alliance district",
+                 "reporting period", "date updated", "date scraped"])
+    api_url = "https://data.ct.gov/resource/5q7h-u2ac.json"
     response = requests.get(api_url)
     data = response.json()
-    #print("CT - Got JSON Data")
+    # print("CT - Got JSON Data")
 
     for properties in data:
-        district = properties["district"]
-        school_id = properties["facilityid"]
-        school = properties["facilityname"]
-        city = properties["city"]
-        num_cases = properties["school_total"]
-        report_date = properties["reporting_period"]
-        new_row = pd.Series(data={"district": district, "facilityid": school_id, "facilityname": school, "city": city,
-                                  "school_total": num_cases, "reporting_period": report_date,
-                                  "dateupdated": date.today()})
+        districtCode = properties["district_code"]
+        districtName = properties["district_name"]
+        inPerson = properties["grades_inperson_model"]
+        hybrid = properties["grades_hybrid_model"]
+        remote = properties["grades_remote_model"]
+        predom = properties["predominant_model"]
+        orgType = properties["organization_type"]
+        try:
+            alliance = properties["alliance_district"]
+        except:
+            alliance = ""
+        reportPeriod = properties["reporting_period"]
+        dateUpdate = properties["update_date"]
+
+        new_row = pd.Series(
+            data={"district code": districtCode, "district name": districtName, "in-person grades": inPerson,
+                  "hybrid grades": hybrid, "remote grades": remote, "predominant learning model": predom,
+                  "organization type": orgType, "alliance district": alliance,
+                  "reporting period": reportPeriod, "date updated": dateUpdate, "date scraped": date.today()})
         df = df.append(new_row, ignore_index=True)
 
     df.to_csv('out/Connecticut' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)
-    #print("CT - Wrote CSV")
+    # print("CT - Wrote CSV")
 
-#main()
+main()

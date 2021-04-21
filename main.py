@@ -5,11 +5,11 @@ import os
 
 # Runs all state scripts that are currently available
 if __name__ == '__main__':
-    # disabledStates = ["arizona", "virginia", "connecticut"]
+    # disabledStates = ["arizona", "virginia"]
 
     # Currently working states <-- ADD STATES BELOW
     currentStates = ["alabama", "colorado", "illinois", "new_mexico", "maryland", "ohio", "oregon", "south_carolina",
-                     "tennessee", "washington", "north_carolina"]
+                     "tennessee", "washington", "north_carolina", "connecticut"]
 
     # Import module for each state script
     modules = {}
