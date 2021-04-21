@@ -1,17 +1,6 @@
 import logging
 from timeit import default_timer as timer
-import alabama
-#import arizona
-import colorado
-import illinois
-import new_mexico
-import maryland
-import ohio
-import oregon
-import south_carolina
-import tennessee
-#import virginia
-import washington
+import importlib
 
 # Runs all state scripts that are currently available
 if __name__ == '__main__':
@@ -20,13 +9,20 @@ if __name__ == '__main__':
     currentStates = ["alabama", "colorado", "illinois", "new_mexico", "maryland", "ohio", "oregon", "south_carolina",
                      "tennessee", "washington"]
 
+    modules = {}
+    for state in currentStates:
+        try:
+            modules[state] = importlib.import_module(state)
+        except ImportError:
+            logging.error("Failed to import %s", state, exc_info=True)
+
     successes = []
     failures = []
 
     startTimer = timer()
     for state in currentStates:
         try:
-            exec("{stateName}.main()".format(stateName=state))
+            exec("modules['{stateName}'].main()".format(stateName=state))
             successes.append(state)
         except Exception:
             logging.error("Failed to fetch %s", state, exc_info=True)
@@ -37,7 +33,7 @@ if __name__ == '__main__':
 
     print("Fetched data for " + str(successes) + " in " + str(elapsed) + " seconds.")
     if failures:
-        print("Failed to fetch: " +  str(failures))
+        print("Failed to fetch: " + str(failures))
 
 
 
