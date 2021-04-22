@@ -9,6 +9,9 @@ out/
 # temporary files
 temp/
 
+# security
+boxConfig.txt
+
 # byte-compiled
 __pycache__/
 
