@@ -28,7 +28,7 @@ def main():
         #print("SC - Scraped data")
         csv_columns = ['SchoolDistrict', 'Policy']
 
-        with open("out/South_Carolina" + datetime.now().strftime('%m-%d-%Y') + ".csv", 'w') as csv_file:
+        with open("out/SC_" + datetime.now().strftime('%Y%m%d') + ".csv", 'w') as csv_file:
             writer = csv.writer(csv_file)
             writer.writerow(csv_columns)
             for key, value in schoolinfo.items():

@@ -29,7 +29,7 @@ def write_csv():
 
     pdfPathName = 'temp/New_Mexico_SDP.pdf'
     today = date.today()
-    finalCSVpath = 'out/New_Mexico' + today.strftime("%m-%d-%y") + '.csv'
+    finalCSVpath = 'out/NM_' + today.strftime('%Y%m%d') + '.csv'
     filename = Path(pdfPathName)
     response = requests.get(url)
     filename.write_bytes(response.content)

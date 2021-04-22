@@ -24,7 +24,7 @@ def main():
                                   'instructional delivery': instructional_delivery, 'week of': week_of,
                                   'total positive cases': total_pos_lbl, 'date scraped': date.today()})
         df = df.append(new_row, ignore_index=True)
-    df.to_csv('out/Alabama' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)
+    df.to_csv('out/AL_' + datetime.now().strftime('%Y%m%d') + '.csv', index=False)
     #print("AL - Wrote CSV")
 
 #main()

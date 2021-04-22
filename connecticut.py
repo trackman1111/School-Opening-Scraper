@@ -36,7 +36,7 @@ def main():
                   "reporting period": reportPeriod, "date updated": dateUpdate, "date scraped": date.today()})
         df = df.append(new_row, ignore_index=True)
 
-    df.to_csv('out/Connecticut' + datetime.now().strftime('%m-%d-%Y') + '.csv', index=False)
-    # print("CT - Wrote CSV")
+    df.to_csv('out/CT_' + datetime.now().strftime('%Y%m%d') + '.csv', index=False)
+    #print("CT - Wrote CSV")
 
 main()

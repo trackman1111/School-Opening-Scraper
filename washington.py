@@ -12,7 +12,7 @@ def download_xslx():
 
     # Retrieve CSV file in pages (max 50000 records/page)
     file = requests.get(dataUrl)
-    csvPath = "out/Washington" + datetime.now().strftime('%m-%d-%Y') + ".csv"
+    csvPath = "out/WA_" + datetime.now().strftime('%Y%m%d') + ".csv"
     open(csvPath, 'wb').write(file.content)
 
 #main()
