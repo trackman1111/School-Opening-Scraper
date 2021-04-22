@@ -14,6 +14,7 @@ pandas = "*"
 html5lib = "*"
 tabula-py = "*"
 lxml = "*"
+boxsdk = "*"
 
 [dev-packages]
 
