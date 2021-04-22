@@ -24,12 +24,14 @@ def copy_to_new_csv():
     csvReader = reader(originalFile, delimiter=',')
     inputRow = 0
     df = pd.DataFrame(
-        columns=['school', 'district', 'model', 'cases1', 'cases2', 'cases3', 'cases4', 'date updated',
+        columns=['school', 'district', 'model', 'new student cases in past 7 days',
+                 'cumulative student cases since 9/14/2020', 'new staff cases in past 7 days',
+                 'cumulative staff cases since 9/14/2020', 'date updated',
                  'cases updated', 'date scraped'])
 
     for row in csvReader:
         # Row contains general info:
-        if inputRow == 0 or inputRow == 2:
+        if inputRow == 0 or inputRow == 2 or inputRow == 3:
             inputRow += 1
             continue
 
@@ -71,8 +73,11 @@ def copy_to_new_csv():
         cases3 = row[4]
         cases4 = row[5]
 
-        newRow = pd.Series(data={'school': school, 'district': district, 'model': model, 'cases1': cases1,
-                                 'cases2': cases2, 'cases3': cases3, 'cases4': cases4,
+        newRow = pd.Series(data={'school': school, 'district': district, 'model': model,
+                                 'new student cases in past 7 days': cases1,
+                                 'cumulative student cases since 9/14/2020': cases2,
+                                 'new staff cases in past 7 days': cases3,
+                                 'cumulative staff cases since 9/14/2020': cases4,
                                  'date updated': dateUpdated, 'cases updated': casesUpdated,
                                  'date scraped': date.today()})
 
