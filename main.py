@@ -11,6 +11,14 @@ if __name__ == '__main__':
     currentStates = ["alabama", "colorado", "illinois", "new_mexico", "maryland", "ohio", "oregon", "south_carolina",
                      "tennessee", "washington", "north_carolina", "connecticut", "rhode_island"]
 
+	# Set-up necessary subdirectories
+    for folder in ["temp", "out"]:
+        if not os.path.isdir(folder):
+            try:
+                os.mkdir(folder)
+            except OSError:
+                logging.error("Failed to create directory %s", folder, exc_info=True)
+
     # Import module for each state script
     modules = {}
     for state in currentStates:
@@ -18,14 +26,6 @@ if __name__ == '__main__':
             modules[state] = importlib.import_module(state)
         except ImportError:
             logging.error("Failed to import %s", state, exc_info=True)
-
-    # Set-up necessary subdirectories
-    for folder in ["temp", "out"]:
-        if not os.path.isdir(folder):
-            try:
-                os.mkdir(folder)
-            except OSError:
-                logging.error("Failed to create directory %s", folder, exc_info=True)
 
     # Lists to store scripts that either fail or succeed in running
     successes = []
