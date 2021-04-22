@@ -13,10 +13,22 @@ If you have any problems or questions about this repository, please feel free to
 1. Install [Python](https://www.python.org/downloads/)
 2. Install [Pipenv](https://packaging.python.org/tutorials/managing-dependencies/#installing-pipenv)
 3. Navigate to the project root directory
+3. If you are not using Box to store files, set `useBox = False` inside `main.py`  
 4. Run `pipenv install` to install the dependencies from the Pipfile
 5. Run the script with `pipenv run python main.py`
    - If you get an error that `pipenv` is not available, you may need to [edit your system `PATH`](https://packaging.python.org/tutorials/installing-packages/#installing-to-the-user-site)
    - You can also open a shell within this virtual environment using `pipenv shell`
+
+## Box Configuration
+Box authentication configuration can be added locally in `boxConfig.txt`. 
+The `/out` directory is cleared after successful Box upload
+
+**Format for boxConfig.txt:**
+```
+<CLIENT_ID>
+<CLIENT_SECRET>
+<ACCESS_TOKEN>
+```
 
 ## Adding a State Script
 
