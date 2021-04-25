@@ -1,3 +1,5 @@
+import logging
+
 import tabula
 from pathlib import Path
 import os
@@ -12,6 +14,7 @@ def main():
 
 
 def write_csv():
+    logging.basicConfig(filename='app.log', filemode='a', format='%(asctime)s - %(message)s', level=logging.INFO)
     url = "https://webnew.ped.state.nm.us/"
     page = requests.get(url)
 
@@ -22,7 +25,7 @@ def write_csv():
         linkcol = soup.find(class_="col-md-4")
         for linktxt in linkcol.find_all("a", href=True):
             if linktxt.contents[0] == 'School Reentry Status':
-                #print('NM - Link Found')
+                logging.info("Received New Meexico Data", exc_info=False);
                 url = linktxt.get('href')
     else:
         print("NM - page request error with ", page.status_code)
@@ -62,5 +65,6 @@ def write_csv():
         #print('NM - Deleted PDF')
     except:
         print("NM - Could not delete file")
+    logging.info("Wrote New Mexico Data", exc_info=False);
 
 #main()

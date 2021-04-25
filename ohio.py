@@ -1,3 +1,5 @@
+import logging
+
 import requests
 from openpyxl import load_workbook
 from bs4 import BeautifulSoup
@@ -7,10 +9,11 @@ from datetime import datetime
 
 
 def main():
+    logging.basicConfig(filename='app.log', filemode='a', format='%(asctime)s - %(message)s', level=logging.INFO)
     modifiedDate = download_xslx()
-    #print("OH - Downloaded CSV")
+    logging.info("Received Ohio Data", exc_info=False);
     copy_to_new_csv(modifiedDate)
-    #print("OH - Wrote CSV")
+    logging.info("Wrote Ohio Data", exc_info=False);
 
 
 def download_xslx():

@@ -1,3 +1,5 @@
+import logging
+
 import requests
 from csv import reader
 import pandas as pd
@@ -6,10 +8,11 @@ from datetime import datetime
 
 
 def main():
+    logging.basicConfig(filename='app.log', filemode='a', format='%(asctime)s - %(message)s', level=logging.INFO)
     download_csv()
-    # print("RI - Downloaded CSV")
+    logging.info("Received Rhode Island Data", exc_info=False);
     copy_to_new_csv()
-    # print("RI - Wrote CSV")
+    logging.info("Wrote Rhode Island Data", exc_info=False);
 
 
 def download_csv():

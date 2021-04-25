@@ -26,7 +26,7 @@ if __name__ == '__main__':
             modules[state] = importlib.import_module(state)
             logging.info("Successfully Imported %s", state, exc_info=False)
         except ImportError:
-            logging.error("Failed to import %s", state, exc_info=False)
+            logging.error("Failed to import %s", state, exc_info=True)
 
     # Lists to store scripts that either fail or succeed in running
     successes = []
@@ -41,16 +41,15 @@ if __name__ == '__main__':
             successes.append(state)
             logging.info("Successfully Fetched %s", state, exc_info=False)
         except Exception:
-            logging.error("Failed to fetch %s", state, exc_info=False)
+            logging.error("Failed to fetch %s", state, exc_info=True)
             failures.append(state)
 
     endTimer = timer() # End timer
     elapsed = endTimer - startTimer # Calculate elapsed time to fetch state data
 
     # Print results
-    print("Fetched data for " + str(successes) + " in " + str(elapsed) + " seconds.")
-    if failures:
-        print("Failed to fetch: " + str(failures))
+    logging.info("Fetched data for " + str(successes) + " in " + str(elapsed) + " seconds.", exc_info=False);
+    logging.info("Failed to fetch: " + str(failures), exc_info=False);
 
 
 

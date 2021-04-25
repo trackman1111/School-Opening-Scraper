@@ -1,3 +1,5 @@
+import logging
+
 import requests
 import urllib
 import csv
@@ -5,14 +7,17 @@ from csv import reader
 
 
 def main():
+    logging.basicConfig(filename='app.log', filemode='a', format='%(asctime)s - %(message)s', level=logging.INFO)
     print("test")
     #download_csv()
+    logging.info("Received Virginia Data", exc_info=False);
     #copy_to_new_csv()
+    logging.info("Wrote Alabama Data", exc_info=False);
 
 def download_csv():
     url = "https://public.tableau.com/vizql/w/R2L2020/v/R2L/tempfile/sessions/53FC07EE12434A21990049852B616107-0:0/?key=1430079797&keepfile=yes&attachment=yes"
     urllib.request.urlretrieve(url, 'temp/VirginiaOriginal.csv')
-    print("Downloaded VA csv")
+
 
 
 def copy_to_new_csv():
