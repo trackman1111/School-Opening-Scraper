@@ -1,5 +1,6 @@
 # add all imports here
 import json
+import logging
 import urllib
 import pandas as pd
 from datetime import date, datetime
@@ -10,6 +11,7 @@ def main():
 
 
 def to_csv():
+    logging.basicConfig(filename='app.log', filemode='a', format='%(asctime)s - %(message)s', level=logging.INFO)
     df = pd.DataFrame(columns=['school id', 'name', 'address1', 'address2', 'city', 'zipcode', 'phone', 'website',
                                'latitude', 'longitude', 'last updated', 'opening date', 'operating type id',
                                'operating type', 'region id', 'region name', 'region contact', 'region phone',
@@ -18,7 +20,7 @@ def to_csv():
     url = "https://districtinformation.tnedu.gov/api/districts"
     open_url = urllib.request.urlopen(url)
     json_data = json.loads(open_url.read())
-    #print("TN - Got JSON Data")
+    logging.info("Received Tennessee Data", exc_info=False);
     for sd in json_data:
         school_id = sd["id"]
         name = sd["name"]
@@ -63,6 +65,6 @@ def to_csv():
         df = df.append(new_row, ignore_index=True)
     # writes to "Tennessee.csv" file
     df.to_csv('out/TN_' + datetime.now().strftime('%Y%m%d') + '.csv', index=False)
-    #print("TN - Wrote CSV")
+    logging.info("Wrote Tennessee Data", exc_info=False);
 
 #main()

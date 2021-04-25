@@ -1,3 +1,4 @@
+import logging
 from _csv import reader
 from bs4 import BeautifulSoup
 import requests
@@ -7,6 +8,7 @@ from datetime import date, datetime
 
 
 def main():
+    logging.basicConfig(filename='app.log', filemode='a', format='%(asctime)s - %(message)s', level=logging.INFO)
     for school in ["hi"]:
         url = "https://ed.sc.gov/districts-schools/schools/district-and-school-closures/operational-status/"
         page = requests.get(url)
@@ -25,7 +27,7 @@ def main():
         else:
             print("SC - page request error with ", page.status_code)
 
-        #print("SC - Scraped data")
+        logging.info("Received South Carolina Data", exc_info=False);
         csv_columns = ['SchoolDistrict', 'Policy']
 
         with open("out/SC_" + datetime.now().strftime('%Y%m%d') + ".csv", 'w') as csv_file:
@@ -34,7 +36,7 @@ def main():
             for key, value in schoolinfo.items():
                 writer.writerow([key, value])
 
-        #print("SC - Wrote CSV")
+        logging.info("Wrote South Carolina Data", exc_info=False);
 
 
 def copy_to_main():

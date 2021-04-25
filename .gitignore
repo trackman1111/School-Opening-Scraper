@@ -3,6 +3,9 @@
 # IDE files
 .idea
 
+#Log Files
+app.log
+
 # outputs
 out/
 

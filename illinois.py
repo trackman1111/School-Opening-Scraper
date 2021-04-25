@@ -1,3 +1,5 @@
+import logging
+
 import requests
 import pandas as pd
 from datetime import date
@@ -5,13 +7,14 @@ from datetime import datetime
 
 
 def main():
+    logging.basicConfig(filename='app.log', filemode='a', format='%(asctime)s - %(message)s', level=logging.INFO)
     df = pd.DataFrame(
         columns=['district', 'city', 'county', 'instructional delivery', 'school count', 'grades served', 'total PreK-12 enrollment',
                  'modified id', 'date scraped'])
     url = "https://services2.arcgis.com/3yCQWqEMIRwEdrth/arcgis/rest/services/School_District_Survey_Public/FeatureServer/0/query?f=json&where=(InstrFormat%20%3D%20%27Blended%20Remote%20Learning%27)%20OR%20(InstrFormat%20%3D%20%27In-Person%20Learning%27)%20OR%20(InstrFormat%20%3D%20%27Remote%20Learning%27)&returnGeometry=false&spatialRel=esriSpatialRelIntersects&outFields=*&orderByFields=USER_Facil%20asc&resultOffset=0&resultRecordCount=670&resultType=standard&cacheHint=true"
     openUrl = requests.get(url)
     jsonD = openUrl.json()
-    #print("IL - Got JSON Data")
+    logging.info("Received Illinois Data", exc_info=False);
     for p in jsonD["features"]:
         district = p["attributes"]["USER_Facil"]
         city = p["attributes"]["USER_City"]
@@ -27,6 +30,6 @@ def main():
                                   'modified id': modified_id, 'date scraped': date.today()})
         df = df.append(new_row, ignore_index=True)
     df.to_csv('out/IL_' + datetime.now().strftime('%Y%m%d') + '.csv', index=False)
-    #print("IL - Wrote CSV")
+    logging.info("Wrote Illinois Data", exc_info=False);
 
 #main()

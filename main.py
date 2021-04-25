@@ -42,7 +42,7 @@ def uploadToBox(client, folder_id, filename):
 # Runs all state scripts that are currently available
 if __name__ == '__main__':
     # disabledStates = ["arizona", "virginia"]
-
+    logging.basicConfig(filename='app.log', filemode='a', format='%(asctime)s - %(message)s', level=logging.INFO)
     # Currently working states <-- ADD STATES BELOW
     currentStates = ["alabama", "colorado", "illinois", "new_mexico", "maryland", "ohio", "oregon", "south_carolina",
                      "tennessee", "washington", "north_carolina", "connecticut", "rhode_island"]
@@ -78,13 +78,14 @@ if __name__ == '__main__':
             try:
                 os.mkdir(localFolder)
             except OSError:
-                logging.error("Failed to create directory %s", localFolder, exc_info=True)
+                logging.error("Failed to create directory %s", folder, exc_info=False)
 
     # Import module for each state script
     modules = {}
     for state in currentStates:
         try:
             modules[state] = importlib.import_module(state)
+            logging.info("Successfully Imported %s", state, exc_info=False)
         except ImportError:
             logging.error("Failed to import %s", state, exc_info=True)
 
@@ -99,6 +100,7 @@ if __name__ == '__main__':
         try:
             exec("modules['{stateName}'].main()".format(stateName=state))
             successes.append(state)
+            logging.info("Successfully Fetched %s", state, exc_info=False)
         except Exception:
             logging.error("Failed to fetch %s", state, exc_info=True)
             failures.append(state)
@@ -138,6 +140,5 @@ if __name__ == '__main__':
                 print("Successfully cleared output folder.")
 
     # Print results
-    print("Fetched data for " + str(successes) + " in " + str(elapsed) + " seconds.")
-    if failures:
-        print("Failed to fetch: " + str(failures))
+    logging.info("Fetched data for " + str(successes) + " in " + str(elapsed) + " seconds.", exc_info=False);
+    logging.info("Failed to fetch: " + str(failures), exc_info=False);
