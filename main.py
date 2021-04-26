@@ -66,7 +66,7 @@ if __name__ == '__main__':
             oauth2 = OAuth2(CLIENT_ID, CLIENT_SECRET, access_token=ACCESS_TOKEN)
 
             # Create the authenticated client
-            client = Client(oauth2, LoggingNetwork())
+            client = Client(oauth2)#, LoggingNetwork())
         except Exception as e:
             print("Error creating Box client: %s" % e)
     else:
@@ -110,11 +110,11 @@ if __name__ == '__main__':
 
     if useBox:
         # Upload to Box
-        outputDir = '/out'
+        outputDir = 'out'
         uploadSuccess = True
         for outFile in os.listdir(outputDir):
             outFilePath = os.path.join(outputDir, outFile)
-            rootBoxFolder = '0'
+            rootBoxFolder = '135929332730'
             try:
                 if os.path.isfile(outFilePath) and client:
                     uploadToBox(client, rootBoxFolder, outFilePath)
