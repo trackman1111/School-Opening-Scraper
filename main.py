@@ -120,5 +120,5 @@ if __name__ == '__main__':
                 print("Successfully cleared output folder.")
 
     # Print results
-    logging.info("Fetched data for " + str(successes) + " in " + str(elapsed) + " seconds.", exc_info=False);
-    logging.info("Failed to fetch: " + str(failures), exc_info=False);
+    logging.info("Fetched data for " + str(successes) + " in " + str(elapsed) + " seconds.", exc_info=False)
+    logging.info("Failed to fetch: " + str(failures), exc_info=False)
