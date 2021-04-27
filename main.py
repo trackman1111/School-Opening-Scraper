@@ -58,7 +58,7 @@ if __name__ == '__main__':
             try:
                 os.mkdir(localFolder)
             except OSError:
-                logging.error("Failed to create directory %s", folder, exc_info=False)
+                logging.error("Failed to create directory %s", localFolder, exc_info=False)
 
     # Import module for each state script
     modules = {}
