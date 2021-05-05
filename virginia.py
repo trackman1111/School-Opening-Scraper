@@ -10,7 +10,9 @@ def main():
     workbook = ts.getWorkbook()
     logging.info("Received Virginia Data", exc_info=False);
 
-    t.data.to_csv("VA_" + datetime.now().strftime('%Y%m%d'))
+    for t in workbook.worksheets:
+        df = t.data
+    df.to_csv("VA_" + datetime.now().strftime('%Y%m%d'))
     logging.info("Wrote Virginia Data", exc_info=False);
 
 main()
