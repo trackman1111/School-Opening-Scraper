@@ -12,7 +12,7 @@ def main():
 
     for t in workbook.worksheets:
         df = t.data
-    df.to_csv("VA_" + datetime.now().strftime('%Y%m%d'))
+    df.to_csv("VA_" + datetime.now().strftime('%Y%m%d') + ".csv")
     logging.info("Wrote Virginia Data", exc_info=False);
 
 main()
