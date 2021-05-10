@@ -1,40 +1,18 @@
-import logging
-
-import requests
-import urllib
-import csv
-from csv import reader
-
+from tableauscraper import TableauScraper as TS
+from datetime import datetime
 
 def main():
     logging.basicConfig(filename='app.log', filemode='a', format='%(asctime)s - %(message)s', level=logging.INFO)
-    print("test")
-    #download_csv()
+    url="https://public.tableau.com/views/R2L2020/Division"
+
+    ts = TS()
+    ts.loads(url)
+    workbook = ts.getWorkbook()
     logging.info("Received Virginia Data", exc_info=False);
-    #copy_to_new_csv()
-    logging.info("Wrote Alabama Data", exc_info=False);
 
-def download_csv():
-    url = "https://public.tableau.com/vizql/w/R2L2020/v/R2L/tempfile/sessions/53FC07EE12434A21990049852B616107-0:0/?key=1430079797&keepfile=yes&attachment=yes"
-    urllib.request.urlretrieve(url, 'temp/VirginiaOriginal.csv')
-
-
-
-def copy_to_new_csv():
-    f1 = open('temp/VirginiaOriginal.csv', 'r', newline='', encoding='utf-16')
-    f2 = open('out/SchoolDistricts.csv', 'a')
-    csv_reader = reader(f1, delimiter='\t')
-    csv_writer = csv.writer(f2)
-    i = 0;
-    date_update = "none"
-    for row in csv_reader:
-        if i == 1:
-            date_update = row[len(row)-1]
-        if (row[len(row)-1] != "") and (i > 1):
-            csv_writer.writerow(["Virginia", row[1],row[len(row)-1], date_update])
-        i += 1
-    f1.close()
-    f2.close()
-
+    for t in workbook.worksheets:
+        df = t.data
+    df.to_csv("VA_" + datetime.now().strftime('%Y%m%d') + ".csv")
+    logging.info("Wrote Virginia Data", exc_info=False);
 
 main()

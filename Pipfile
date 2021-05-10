@@ -15,6 +15,7 @@ html5lib = "*"
 tabula-py = "*"
 lxml = "*"
 boxsdk = "*"
+TableauScraper = "*"
 
 [dev-packages]
 
